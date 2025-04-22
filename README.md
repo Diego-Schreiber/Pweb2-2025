@@ -1,4 +1,4 @@
-#Github para Programación Web 2
-##Propietario
--Diego Schreiber
+# Github para Programación Web 2
+## Propietario
+- Diego Schreiber
 
