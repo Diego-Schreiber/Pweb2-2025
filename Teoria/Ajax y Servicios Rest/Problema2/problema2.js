@@ -5,18 +5,18 @@
     return 'rgb(' + r + ',' + g + ',' + b + ')';
   }
 
- async function cargarDatos() {
+  async function cargarDatos() {
    try {
     const respuesta = await fetch('data.json');
     const datos = await respuesta.json();
     return datos;
-  } catch (error) {
-    console.error('Error al cargar el archivo JSON:', error);
-    return [];
+   } catch (error) {
+      console.error('Error al cargar el archivo JSON:', error);
+      return [];
+     }
   }
-}
  
- function obtenerRegionesSeleccionadas() {
+  function obtenerRegionesSeleccionadas() {
     const checkboxes = document.querySelectorAll('.checkbox-grid input[type="checkbox"]');
     const regiones = [];
   
@@ -29,3 +29,7 @@
     return regiones;
   }
   
+  function obtenerTipoDatoSeleccionado() {
+    const select = document.getElementById('tipo-dato');
+    return select.value;
+  }
