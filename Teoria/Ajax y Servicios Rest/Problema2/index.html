@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Comparación de Regiones</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      max-width: 900px;
+      margin: auto;
+      margin-bottom: 20px;
+    }
+
+    .checkbox-grid label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+
+    canvas {
+      margin-top: 30px;
+    }
+
+    #tipo-dato {
+      margin-bottom: 15px;
+      padding: 5px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 style="text-align: center;">Gráfico Comparativo entre Regiones</h2>
+
+  <div class="checkbox-grid">
+    <label><input type="checkbox" value="Amazonas">Amazonas</label>
+    <label><input type="checkbox" value="Áncash">Áncash</label>
+    <label><input type="checkbox" value="Apurímac">Apurímac</label>
+    <label><input type="checkbox" value="Arequipa">Arequipa</label>
+    <label><input type="checkbox" value="Ayacucho">Ayacucho</label>
+    <label><input type="checkbox" value="Cajamarca">Cajamarca</label>
+    //<label><input type="checkbox" value="Callao">Callao</label>
+    <label><input type="checkbox" value="Cusco">Cusco</label>
+    <label><input type="checkbox" value="Huancavelica">Huancavelica</label>
+    <label><input type="checkbox" value="Huánuco">Huánuco</label>
+    <label><input type="checkbox" value="Ica">Ica</label>
+    <label><input type="checkbox" value="Junín">Junín</label>
+    <label><input type="checkbox" value="La Libertad">La Libertad</label>
+    <label><input type="checkbox" value="Lambayeque">Lambayeque</label>
+    //<label><input type="checkbox" value="Lima">Lima</label>
+    <label><input type="checkbox" value="Loreto">Loreto</label>
+    <label><input type="checkbox" value="Madre de Dios">Madre de Dios</label>
+    <label><input type="checkbox" value="Moquegua">Moquegua</label>
+    <label><input type="checkbox" value="Pasco">Pasco</label>
+    <label><input type="checkbox" value="Piura">Piura</label>
+    <label><input type="checkbox" value="Puno">Puno</label>
+    <label><input type="checkbox" value="San Martín">San Martín</label>
+    <label><input type="checkbox" value="Tacna">Tacna</label>
+    <label><input type="checkbox" value="Tumbes">Tumbes</label>
+    <label><input type="checkbox" value="Ucayali">Ucayali</label>
+  </div>
+
+  <div class="container">
+    <label for="tipo-dato"><strong>Selecciona el tipo de dato a visualizar:</strong></label><br>
+    <select id="tipo-dato">
+      <option value="confirmed">confirmed</option>
+      <option value="recover">recover</option>
+      <option value="death">death</option>
+      <option value="hospital">hospital</option>
+      <option value="hospitaluci">hospitaluci</option>
+      <option value="nohospital">nohospital</option>
+    </select>
+
+    <br><br>
+    <button id="btn-graficar" onclick="ejecutarGrafico()">Graficar</button>
+    <canvas id="grafico" width="800" height="400"></canvas>
+  </div>
+
+  <script src="problema2.js"></script>
+</body>
+</html>
