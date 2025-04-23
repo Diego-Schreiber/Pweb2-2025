@@ -28,10 +28,17 @@
     .container {
       max-width: 900px;
       margin: auto;
+      text-align: center;
     }
 
     canvas {
       margin-top: 30px;
+    }
+
+    #tipo-dato {
+      margin-bottom: 15px;
+      padding: 5px;
+      font-size: 16px;
     }
   </style>
 </head>
@@ -68,6 +75,17 @@
   </div>
 
   <div class="container">
+    <label for="tipo-dato"><strong>Selecciona el tipo de dato a visualizar:</strong></label><br>
+    <select id="tipo-dato">
+      <option value="confirmed">confirmed</option>
+      <option value="recover">recover</option>
+      <option value="death">death</option>
+      <option value="hospital">hospital</option>
+      <option value="hospitaluci">hospitaluci</option>
+      <option value="nohospital">nohospital</option>
+    </select>
+
+    <br><br>
     <button id="btn-graficar">Graficar</button>
     <canvas id="grafico" width="800" height="400"></canvas>
   </div>
