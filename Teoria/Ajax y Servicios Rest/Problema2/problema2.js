@@ -33,3 +33,56 @@
     const select = document.getElementById('tipo-dato');
     return select.value;
   }
+
+  function prepararDatosParaGrafico(dataJson, regionesSeleccionadas, tipoDato) {
+    const datasets = [];
+    let etiquetas = [];
+  
+    regionesSeleccionadas.forEach(regionNombre => {
+      const region = dataJson.find(r => r.region === regionNombre);
+  
+      if (region && region[tipoDato] && region[tipoDato].length > 0) {
+        const valores = region[tipoDato].map(item => parseInt(item.value));
+        const fechas = region[tipoDato].map(item => item.date);
+  
+        if (etiquetas.length === 0) {
+          etiquetas = fechas;
+        }
+  
+        datasets.push({
+          label: regionNombre,
+          data: valores,
+          borderColor: generarColorAleatorio(),
+          fill: false
+        });
+      }
+    });
+  
+    return { etiquetas, datasets };
+  }
+
+  let grafico;
+  function graficar(etiquetas, datasets) {
+    const ctx = document.getElementById('grafico').getContext('2d');
+  
+    if (grafico) {
+      grafico.destroy();
+    }
+  
+    grafico = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: etiquetas,
+        datasets: datasets
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Comparación de regiones por tipo de dato seleccionado'
+          }
+        }
+      }
+    });
+  }
