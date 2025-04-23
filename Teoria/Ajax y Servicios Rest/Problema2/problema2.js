@@ -5,7 +5,7 @@
     return 'rgb(' + r + ',' + g + ',' + b + ')';
   }
 
-  async function cargarDatos() {
+ async function cargarDatos() {
    try {
     const respuesta = await fetch('data.json');
     const datos = await respuesta.json();
@@ -15,4 +15,17 @@
     return [];
   }
 }
-
+ 
+ function obtenerRegionesSeleccionadas() {
+    const checkboxes = document.querySelectorAll('.checkbox-grid input[type="checkbox"]');
+    const regiones = [];
+  
+    checkboxes.forEach(checkbox => {
+      if (checkbox.checked) {
+        regiones.push(checkbox.value);
+      }
+    });
+  
+    return regiones;
+  }
+  
