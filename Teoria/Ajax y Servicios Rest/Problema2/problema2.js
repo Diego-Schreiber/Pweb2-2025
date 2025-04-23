@@ -1,25 +1,25 @@
 async function ejecutarGrafico() {
-  alert("Se hizo clic en el botón y se llamó a ejecutarGrafico()");
+  //alert("Se hizo clic en el botón y se llamó a ejecutarGrafico()");
 
   const regiones = obtenerRegionesSeleccionadas();
-  alert("Regiones seleccionadas: " + regiones.join(", "));
+  //alert("Regiones seleccionadas: " + regiones.join(", "));
 
   const tipoDato = obtenerTipoDatoSeleccionado();
-  alert("Tipo de dato seleccionado: " + tipoDato);
+  //alert("Tipo de dato seleccionado: " + tipoDato);
 
   if (regiones.length === 0) {
-    alert("Selecciona al menos una región.");
+    //alert("Selecciona al menos una región.");
     return;
   }
 
   const datos = await cargarDatos();
-  alert("Archivo JSON cargado. Total de regiones en el JSON: " + datos.length);
+  //alert("Archivo JSON cargado. Total de regiones en el JSON: " + datos.length);
 
   const { etiquetas, datasets } = prepararDatosParaGrafico(datos, regiones, tipoDato);
-  alert("Datos preparados. Total de conjuntos (datasets) a graficar: " + datasets.length);
+  //alert("Datos preparados. Total de conjuntos (datasets) a graficar: " + datasets.length);
 
   graficar(etiquetas, datasets);
-  alert("¡Gráfico generado!");
+  //alert("¡Gráfico generado!");
 }
 async function cargarDatos() {
   try {
@@ -93,7 +93,7 @@ async function cargarDatos() {
     }
   
     grafico = new Chart(ctx, {
-      type: 'bar',
+      type: 'line',
       data: {
         labels: etiquetas,
         datasets: datasets
