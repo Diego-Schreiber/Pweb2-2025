@@ -4,7 +4,7 @@ async function cargarDatos() {
     const datos = await respuesta.json();
     return datos;
   } catch (error) {
-    alert('Error al cargar data.json');
+   //alert('Error al cargar data.json');
     return [];
   }
 }
@@ -85,20 +85,20 @@ function graficarTotales(labels, valores, tipoDato) {
 }
 
 async function ejecutarGraficoTotales() {
-  alert("Generando gráfico de totales...");
+  //alert("Generando gráfico de totales...");
 
   const regiones = obtenerRegionesSeleccionadas();
   const tipoDato = obtenerTipoDatoSeleccionado();
 
   if (regiones.length === 0) {
-    alert("Selecciona al menos una región.");
+    //alert("Selecciona al menos una región.");
     return;
   }
 
   const datos = await cargarDatos();
   const { labels, valores } = prepararTotalesPorRegion(datos, regiones, tipoDato);
 
-  alert("Datos procesados. Graficando...");
+  //alert("Datos procesados. Graficando...");
   graficarTotales(labels, valores, tipoDato);
 }
 
