@@ -1,11 +1,94 @@
-async function ejecutarGrafico() {
-  alert("Se hizo clic en el botón y se llamó a ejecutarGrafico()");
+async function cargarDatos() {
+  try {
+    const respuesta = await fetch('data.json');
+    const datos = await respuesta.json();
+    return datos;
+  } catch (error) {
+    alert('Error al cargar data.json');
+    return [];
+  }
+}
+
+function obtenerRegionesSeleccionadas() {
+  const checkboxes = document.querySelectorAll('.checkbox-grid input[type="checkbox"]');
+  const regiones = [];
+
+  checkboxes.forEach(checkbox => {
+    if (checkbox.checked) {
+      regiones.push(checkbox.value);
+    }
+  });
+
+  return regiones;
+}
+
+function obtenerTipoDatoSeleccionado() {
+  return document.getElementById('tipo-dato').value;
+}
+
+function prepararTotalesPorRegion(dataJson, regionesSeleccionadas, tipoDato) {
+  const labels = [];
+  const valores = [];
+
+  regionesSeleccionadas.forEach(nombreRegion => {
+    const region = dataJson.find(r => r.region === nombreRegion);
+
+    if (region && region[tipoDato]) {
+      const total = region[tipoDato]
+        .map(entry => parseInt(entry.value))
+        .reduce((sum, val) => sum + val, 0);
+
+      labels.push(nombreRegion);
+      valores.push(total);
+    }
+  });
+
+  return { labels, valores };
+}
+
+function generarColorAleatorio() {
+  const r = Math.floor(Math.random() * 255);
+  const g = Math.floor(Math.random() * 255);
+  const b = Math.floor(Math.random() * 255);
+  return 'rgb(' + r + ',' + g + ',' + b + ')';
+}
+
+let grafico;
+
+function graficarTotales(labels, valores, tipoDato) {
+  const ctx = document.getElementById('grafico').getContext('2d');
+
+  if (grafico) {
+    grafico.destroy();
+  }
+
+  grafico = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: `Total de ${tipoDato}`,
+        data: valores,
+        backgroundColor: labels.map(() => generarColorAleatorio())
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: `Comparación total por región (${tipoDato})`
+        }
+      }
+    }
+  });
+}
+
+async function ejecutarGraficoTotales() {
+  alert("Generando gráfico de totales...");
 
   const regiones = obtenerRegionesSeleccionadas();
-  alert("Regiones seleccionadas: " + regiones.join(", "));
-
   const tipoDato = obtenerTipoDatoSeleccionado();
-  alert("Tipo de dato seleccionado: " + tipoDato);
 
   if (regiones.length === 0) {
     alert("Selecciona al menos una región.");
@@ -13,118 +96,9 @@ async function ejecutarGrafico() {
   }
 
   const datos = await cargarDatos();
-  alert("Archivo JSON cargado. Total de regiones en el JSON: " + datos.length);
+  const { labels, valores } = prepararTotalesPorRegion(datos, regiones, tipoDato);
 
-  const { etiquetas, datasets } = prepararDatosParaGrafico(datos, regiones, tipoDato);
-  alert("Datos preparados. Total de conjuntos (datasets) a graficar: " + datasets.length);
-
-  graficar(etiquetas, datasets);
-  alert("¡Gráfico generado!");
+  alert("Datos procesados. Graficando...");
+  graficarTotales(labels, valores, tipoDato);
 }
-async function cargarDatos() {
-  try {
-    const respuesta = await fetch('data.json');
-    const datos = await respuesta.json();
-    return datos;
-  } catch (error) {
-    console.error('Error al cargar el archivo JSON:', error);
-    return [];
-  }
-}
-  
-  function obtenerRegionesSeleccionadas() {
-    const checkboxes = document.querySelectorAll('.checkbox-grid input[type="checkbox"]');
-    const regiones = [];
-  
-    checkboxes.forEach(checkbox => {
-      if (checkbox.checked) {
-        regiones.push(checkbox.value);
-      }
-    });
-  
-    return regiones;
-  }
-  
-  function obtenerTipoDatoSeleccionado() {
-    const select = document.getElementById('tipo-dato');
-    return select.value;
-  }
-  function prepararTotalesPorRegion(dataJson, regionesSeleccionadas, tipoDato) {
-   const labels = [];
-   const valores = [];
 
-   regionesSeleccionadas.forEach(nombreRegion => {
-     const region = dataJson.find(r => r.region === nombreRegion);
-
-     if (region && region[tipoDato]) {
-       const total = region[tipoDato]
-         .map(entry => parseInt(entry.value))
-         .reduce((sum, val) => sum + val, 0);
-
-       labels.push(nombreRegion);
-       valores.push(total);
-     }
-   });
-
-   return { labels, valores };
-  }
- 
-  function prepararDatosParaGrafico(dataJson, regionesSeleccionadas, tipoDato) {
-    const datasets = [];
-    let etiquetas = [];
-  
-    regionesSeleccionadas.forEach(regionNombre => {
-      const region = dataJson.find(r => r.region === regionNombre);
-  
-      if (region && region[tipoDato] && region[tipoDato].length > 0) {
-        const valores = region[tipoDato].map(item => parseInt(item.value));
-        const fechas = region[tipoDato].map(item => item.date);
-  
-        if (etiquetas.length === 0) {
-          etiquetas = fechas;
-        }
-  
-        datasets.push({
-          label: regionNombre,
-          data: valores,
-          borderColor: generarColorAleatorio(),
-          fill: false
-        });
-      }
-    });
-  
-    return { etiquetas, datasets };
-  }
-  
-  function generarColorAleatorio() {
-    const r = Math.floor(Math.random() * 255);
-    const g = Math.floor(Math.random() * 255);
-    const b = Math.floor(Math.random() * 255);
-    return 'rgb(' + r + ',' + g + ',' + b + ')';
-  }
-  
-  let grafico;
-  function graficar(etiquetas, datasets) {
-    const ctx = document.getElementById('grafico').getContext('2d');
-  
-    if (grafico) {
-      grafico.destroy();
-    }
-  
-    grafico = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: etiquetas,
-        datasets: datasets
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          title: {
-            display: true,
-            text: 'Comparación de regiones por tipo de dato seleccionado'
-          }
-        }
-      }
-    });
-  }
