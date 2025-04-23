@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Comparación de Regiones</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+    canvas {
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Gráfico Comparativo entre Regiones</h2>
+
+    <label for="region-select">Selecciona las regiones (Ctrl + click para múltiples):</label><br>
+    <select id="region-select" multiple size="10" style="width: 100%; max-width: 300px;">
+      <!-- Opciones serán insertadas dinámicamente -->
+    </select>
+
+    <br><br>
+    <button id="btn-graficar">Graficar</button>
+
+    <canvas id="grafico" width="800" height="400"></canvas>
+  </div>
+
+  <script src="problema1.js"></script>
+</body>
+</html>
