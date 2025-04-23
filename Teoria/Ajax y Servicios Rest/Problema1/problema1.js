@@ -49,7 +49,26 @@ async function cargarDatos() {
     const select = document.getElementById('tipo-dato');
     return select.value;
   }
-  
+  function prepararTotalesPorRegion(dataJson, regionesSeleccionadas, tipoDato) {
+   const labels = [];
+   const valores = [];
+
+   regionesSeleccionadas.forEach(nombreRegion => {
+     const region = dataJson.find(r => r.region === nombreRegion);
+
+     if (region && region[tipoDato]) {
+       const total = region[tipoDato]
+         .map(entry => parseInt(entry.value))
+         .reduce((sum, val) => sum + val, 0);
+
+       labels.push(nombreRegion);
+       valores.push(total);
+     }
+   });
+
+   return { labels, valores };
+  }
+ 
   function prepararDatosParaGrafico(dataJson, regionesSeleccionadas, tipoDato) {
     const datasets = [];
     let etiquetas = [];
