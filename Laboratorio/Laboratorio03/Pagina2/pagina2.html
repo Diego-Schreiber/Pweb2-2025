@@ -81,6 +81,17 @@
                 { simbolo: '>>', nombre: 'Desplazar a la derecha' }
             ]
         };
+        function actualizarOperadores() {
+            const tipo = document.getElementById("tipoOperacion").value;
+            const operadorSelect = document.getElementById("operador");
+
+            operadores[tipo].forEach(op => {
+                const opcion = document.createElement("option");
+                opcion.value = op.simbolo;
+                opcion.textContent = op.nombre;
+                operadorSelect.appendChild(opcion);
+            });
+        }
     </script>
 </body>
 </html>
