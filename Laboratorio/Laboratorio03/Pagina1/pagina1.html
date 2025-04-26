@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cambiar tamaño de letra</title>
+    <style>
+        #textoMostrado {
+            font-size: 16px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Control de tamaño de letra</h1>
+
+    <label for="inputTexto">Escribe algo:</label><br>
+    <input type="text" id="inputTexto" placeholder="Escribe tu texto aquí" oninput="mostrarTexto()" /><br><br>
+
+    <button id="btnAumentar">Aumentar tamaño</button>
+    <button id="btnDisminuir">Disminuir tamaño</button>
+
+    <div id="textoMostrado"></div>
+</body>
+</html>
