@@ -97,6 +97,39 @@
 
         window.onload = actualizarOperadores;
 
+        function calcular() {
+            const valor1 = parseFloat(document.getElementById("valor1").value);
+            const valor2 = parseFloat(document.getElementById("valor2").value);
+            const operador = document.getElementById("operador").value;
+            let resultado;
+
+            if (isNaN(valor1) || isNaN(valor2)) {
+                resultado = "Por favor, ingresa dos números válidos.";
+            } else {
+                switch (operador) {
+                    case '+':
+                        resultado = valor1 + valor2;
+                        break;
+                    case '-':
+                        resultado = valor1 - valor2;
+                        break;
+                    case '*':
+                        resultado = valor1 * valor2;
+                        break;
+                    case '/':
+                        resultado = valor2 !== 0 ? valor1 / valor2 : "Error: División por cero";
+                        break;
+                    case '%':
+                        resultado = valor2 !== 0 ? valor1 % valor2 : "Error: División por cero";
+                        break;
+                    default:
+                        resultado = "Operador no válido para esta versión.";
+                }
+            }
+
+            document.getElementById("resultado").textContent = "Resultado: " + resultado;
+        }
+
     </script>
 </body>
 </html>
