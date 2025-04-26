@@ -63,14 +63,16 @@
         <div>
             <button id="btnAumentar" onclick="funcionAumentar()">Aumentar tamaño</button>
             <button id="btnDisminuir" onclick="funcionDisminuir()">Disminuir tamaño</button>
-            <label for="selectColor">Elige un color:</label><br>
-            <select id="selectColor" onchange="cambiarColor()">
-                <option value="black">Negro</option>
-                <option value="red">Rojo</option>
-                <option value="blue">Azul</option>
-                <option value="green">Verde</option>
-                <option value="purple">Morado</option>
-            </select>
+            <div style="display: inline-block; margin-left: 20px;">
+        <label for="selectColor">Elige un color:</label>
+        <select id="selectColor" onchange="cambiarColor()">
+            <option value="black">Negro</option>
+            <option value="red">Rojo</option>
+            <option value="blue">Azul</option>
+            <option value="green">Verde</option>
+            <option value="purple">Morado</option>
+        </select>
+    </div>
         </div>
 
         <div id="textoMostrado"></div>
