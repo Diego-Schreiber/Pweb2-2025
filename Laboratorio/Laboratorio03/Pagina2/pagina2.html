@@ -50,9 +50,37 @@
             <option value="bits">Bits</option>
         </select><br>
 
+        <select id="operador">
+       
+        </select><br>
+
         <button onclick="calcular()">Calcular</button>
 
         <div id="resultado">Resultado: </div>
     </div>
+
+    <script>
+        const operadores = {
+            aritmetica: [
+                { simbolo: '+', nombre: 'Suma' },
+                { simbolo: '-', nombre: 'Resta' },
+                { simbolo: '*', nombre: 'Multiplicación' },
+                { simbolo: '/', nombre: 'División' },
+                { simbolo: '%', nombre: 'Módulo' }
+            ],
+            logica: [
+                { simbolo: '&&', nombre: 'AND' },
+                { simbolo: '||', nombre: 'OR' },
+                { simbolo: '!', nombre: 'NOT (solo valor 1)' }
+            ],    
+            bits: [
+                { simbolo: '&', nombre: 'AND Bit a Bit' },
+                { simbolo: '|', nombre: 'OR Bit a Bit' },
+                { simbolo: '^', nombre: 'XOR' },
+                { simbolo: '<<', nombre: 'Desplazar a la izquierda' },
+                { simbolo: '>>', nombre: 'Desplazar a la derecha' }
+            ]
+        };
+    </script>
 </body>
 </html>
