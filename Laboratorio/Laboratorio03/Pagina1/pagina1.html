@@ -62,7 +62,7 @@
 
         <div>
             <button id="btnAumentar" onclick="funcionAumentar()">Aumentar tamaño</button>
-            <button id="btnDisminuir">Disminuir tamaño</button>
+            <button id="btnDisminuir" onclick="funcionDisminuir()">Disminuir tamaño</button>
         </div>
 
         <div id="textoMostrado"></div>
@@ -82,6 +82,12 @@
             texto.style.fontSize = (tamañoActual + 2) + "px";
         }
 
+        function funcionDisminuir(){
+            const texto = document.getElementById("textoMostrado");
+            const estilo = window.getComputedStyle(texto, null).getPropertyValue('font-size');
+            const tamañoActual = parseFloat(estilo);
+            texto.style.fontSize = (tamañoActual - 2) + "px";
+        }
     </script>
 </body>
 </html>
