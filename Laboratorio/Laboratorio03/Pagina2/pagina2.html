@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Operaciones</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+        }
+
+        .contenedor {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            min-width: 350px;
+        }
+
+        input, select {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+            width: 80%;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h2>Calculadora Dinámica</h2>
+
+        <input type="number" id="valor1" placeholder="Primer valor">
+        <input type="number" id="valor2" placeholder="Segundo valor"><br>
+
+        <select id="tipoOperacion" onchange="actualizarOperadores()">
+            <option value="aritmetica">Aritmética</option>
+            <option value="logica">Lógica</option>
+            <option value="bits">Bits</option>
+        </select><br>
+
+        <button onclick="calcular()">Calcular</button>
+
+        <div id="resultado">Resultado: </div>
+    </div>
+</body>
+</html>
