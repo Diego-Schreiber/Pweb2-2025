@@ -85,6 +85,8 @@
             const tipo = document.getElementById("tipoOperacion").value;
             const operadorSelect = document.getElementById("operador");
 
+            operadorSelect.innerHTML = "";
+
             operadores[tipo].forEach(op => {
                 const opcion = document.createElement("option");
                 opcion.value = op.simbolo;
