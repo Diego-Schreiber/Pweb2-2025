@@ -61,7 +61,7 @@
         <textarea id="inputTexto" placeholder="Escribe tu texto aquí..." oninput="mostrarTexto()"></textarea>
 
         <div>
-            <button id="btnAumentar">Aumentar tamaño</button>
+            <button id="btnAumentar" onclick="funcionAumentar()">Aumentar tamaño</button>
             <button id="btnDisminuir">Disminuir tamaño</button>
         </div>
 
@@ -69,10 +69,19 @@
     </div>
     
     <script>
+
         function mostrarTexto() {
             const texto = document.getElementById("inputTexto").value;
             document.getElementById("textoMostrado").textContent = texto;
         }
+
+        function funcionAumentar() {
+            const texto = document.getElementById("textoMostrado");
+            const estilo = window.getComputedStyle(texto, null).getPropertyValue('font-size');
+            const tamañoActual = parseFloat(estilo);
+            texto.style.fontSize = (tamañoActual + 2) + "px";
+        }
+
     </script>
 </body>
 </html>
