@@ -136,6 +136,19 @@
                                 resultado = "Operador lógico no válido.";
                         }
                         break;
+                    case 'bits':
+                        const int1 = parseInt(valor1);
+                        const int2 = parseInt(valor2);
+                        switch (operador) {
+                            case '&': resultado = int1 & int2; break;
+                            case '|': resultado = int1 | int2; break;
+                            case '^': resultado = int1 ^ int2; break;
+                            case '<<': resultado = int1 << int2; break;
+                            case '>>': resultado = int1 >> int2; break;
+                            default:
+                                resultado = "Operador de bits no válido.";
+                        }
+                        break;
 
                     default:
                         resultado = "Este tipo de operación aún no está implementado.";
