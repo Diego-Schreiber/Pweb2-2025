@@ -97,36 +97,50 @@
 
         window.onload = actualizarOperadores;
 
+        
         function calcular() {
             const valor1 = parseFloat(document.getElementById("valor1").value);
             const valor2 = parseFloat(document.getElementById("valor2").value);
             const operador = document.getElementById("operador").value;
+            const tipo = document.getElementById("tipoOperacion").value;
             let resultado;
 
-            if (isNaN(valor1) || isNaN(valor2)) {
-                resultado = "Por favor, ingresa dos números válidos.";
+            if (isNaN(valor1) || (isNaN(valor2) && operador !== '!')) {
+                resultado = "Por favor, ingresa valores válidos.";
             } else {
-                switch (operador) {
-                    case '+':
-                        resultado = valor1 + valor2;
+                switch (tipo) {
+                    case 'aritmetica':
+                        switch (operador) {
+                            case '+': resultado = valor1 + valor2; break;
+                            case '-': resultado = valor1 - valor2; break;
+                            case '*': resultado = valor1 * valor2; break;
+                            case '/': 
+                                resultado = valor2 !== 0 ? valor1 / valor2 : "Error: División por cero"; 
+                                break;
+                            case '%':
+                                resultado = valor2 !== 0 ? valor1 % valor2 : "Error: División por cero";
+                                break;
+                            default:
+                                resultado = "Operador aritmético no válido.";
+                        }
                         break;
-                    case '-':
-                        resultado = valor1 - valor2;
+
+                    case 'logica':
+                        const bool1 = Boolean(valor1);
+                        const bool2 = Boolean(valor2);
+                        switch (operador) {
+                            case '&&': resultado = bool1 && bool2; break;
+                            case '||': resultado = bool1 || bool2; break;
+                            case '!': resultado = !bool1; break;
+                            default:
+                                resultado = "Operador lógico no válido.";
+                        }
                         break;
-                    case '*':
-                        resultado = valor1 * valor2;
-                        break;
-                    case '/':
-                        resultado = valor2 !== 0 ? valor1 / valor2 : "Error: División por cero";
-                        break;
-                    case '%':
-                        resultado = valor2 !== 0 ? valor1 % valor2 : "Error: División por cero";
-                        break;
+
                     default:
-                        resultado = "Operador no válido para esta versión.";
+                        resultado = "Este tipo de operación aún no está implementado.";
                 }
             }
-
             document.getElementById("resultado").textContent = "Resultado: " + resultado;
         }
 
