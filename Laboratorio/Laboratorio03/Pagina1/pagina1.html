@@ -64,15 +64,15 @@
             <button id="btnAumentar" onclick="funcionAumentar()">Aumentar tamaño</button>
             <button id="btnDisminuir" onclick="funcionDisminuir()">Disminuir tamaño</button>
             <div style="display: inline-block; margin-left: 20px;">
-        <label for="selectColor">Elige un color:</label>
-        <select id="selectColor" onchange="cambiarColor()">
-            <option value="black">Negro</option>
-            <option value="red">Rojo</option>
-            <option value="blue">Azul</option>
-            <option value="green">Verde</option>
-            <option value="purple">Morado</option>
-        </select>
-    </div>
+                <label for="selectColor">Elige un color:</label>
+                <select id="selectColor" onchange="cambiarColor()">
+                    <option value="black">Negro</option>
+                    <option value="red">Rojo</option>
+                    <option value="blue">Azul</option>
+                    <option value="green">Verde</option>
+                    <option value="purple">Morado</option>
+                </select>
+            </div>
         </div>
 
         <div id="textoMostrado"></div>
@@ -97,6 +97,10 @@
             const estilo = window.getComputedStyle(texto, null).getPropertyValue('font-size');
             const tamañoActual = parseFloat(estilo);
             texto.style.fontSize = (tamañoActual - 2) + "px";
+        }
+        function cambiarColor() {
+            const colorSeleccionado = document.getElementById("selectColor").value;
+            document.getElementById("textoMostrado").style.color = colorSeleccionado;
         }
     </script>
 </body>
