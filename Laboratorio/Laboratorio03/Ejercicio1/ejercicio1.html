@@ -56,6 +56,12 @@
             const dias = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
             return dias[numeroDia];
         }
+
+        function mostrarDia() {
+            const hoy = new Date().getDay();
+            const nombreDia = obtenerNombreDia(hoy);
+            document.getElementById('resultado').textContent = `Hoy es ${nombreDia}`;
+        }
     </script>
 </body>
 </html>
