@@ -78,5 +78,42 @@
 
         <div id="resultado"></div>
     </div>
+    <script>
+        let cantidadValores;
+
+        function generarTabla() {
+            cantidadValores = document.getElementById('cantidadValores').value;
+
+            if (cantidadValores < 1) {
+                alert("Por favor ingresa un número mayor que 0.");
+                return;
+            }
+
+            const tablaContainer = document.getElementById('tablaContainer');
+            tablaContainer.innerHTML = '';  
+
+            const tabla = document.createElement('table');
+            const thead = document.createElement('thead');
+            const tr = document.createElement('tr');
+            const th = document.createElement('th');
+            th.textContent = 'Valor';
+            tr.appendChild(th);
+            thead.appendChild(tr);
+            tabla.appendChild(thead);
+
+            const tbody = document.createElement('tbody');
+            for (let i = 0; i < cantidadValores; i++) {
+                const tr = document.createElement('tr');
+                const td = document.createElement('td');
+                td.textContent = Math.floor(Math.random() * 100);  
+                tr.appendChild(td);
+                tbody.appendChild(tr);
+            }
+            tabla.appendChild(tbody);
+            tablaContainer.appendChild(tabla);
+  
+            document.getElementById('btnSuma').style.display = 'inline-block';
+        } 
+    </script>
 </body>
 </html>
