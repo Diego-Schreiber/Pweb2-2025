@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calcular suma de valores</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .contenedor {
+            text-align: center;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        table {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #resultado {
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Calcular suma de valores</h1>
+        <label for="cantidadValores">Cantidad de valores:</label>
+        <input type="number" id="cantidadValores" min="1" placeholder="Ingresa la cantidad de valores">
+        <button onclick="generarTabla()">Generar tabla</button>
+
+        <div id="tablaContainer"></div>
+
+        <button id="btnSuma" style="display:none;" onclick="calcularSuma()">Calcular suma</button>
+
+        <div id="resultado"></div>
+    </div>
+</body>
+</html>
