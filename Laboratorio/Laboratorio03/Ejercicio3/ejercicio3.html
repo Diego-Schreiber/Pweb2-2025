@@ -51,5 +51,22 @@
         <button onclick="calcularDias()">Calcular</button>
         <div id="resultado"></div>
     </div>
+    <script>
+        function calcularDias() {
+            const hoy = new Date();
+            const añoActual = hoy.getFullYear();
+            let fechaArequipa = new Date(añoActual, 7, 15);
+
+            if (hoy > fechaArequipa) {
+                fechaArequipa = new Date(añoActual + 1, 7, 15);
+            }
+
+            const diferenciaMilisegundos = fechaArequipa - hoy;
+            const diasFaltantes = Math.ceil(diferenciaMilisegundos / (1000 * 60 * 60 * 24));
+
+            document.getElementById("resultado").textContent = 
+                `Faltan ${diasFaltantes} día(s) para el Día de Arequipa 🎉`;
+        }
+    </script>
 </body>
 </html>
