@@ -60,5 +60,18 @@
         <button onclick="extraerCodigo()">Extraer código</button>
         <div id="resultado"></div>
     </div>
+    <script>
+        function extraerCodigo() {
+            let url = document.getElementById("urlInput").value;
+            url = url.replace("https://meet.google.com/", "");
+
+            if (url) {
+                const codigo = url.replace(/-/g, '');
+                document.getElementById("resultado").textContent = `El código de la sesión es: ${codigo}`;
+            } else {
+                document.getElementById("resultado").textContent = "La URL no es válida o no contiene un código de sesión de Google Meet.";
+            }
+        }
+    </script>
 </body>
 </html>
