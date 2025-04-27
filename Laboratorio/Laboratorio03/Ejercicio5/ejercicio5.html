@@ -114,6 +114,17 @@
   
             document.getElementById('btnSuma').style.display = 'inline-block';
         } 
+
+        function calcularSuma() {
+            const tabla = document.querySelector('table');
+            const filas = tabla.getElementsByTagName('tr');
+            let suma = 0;
+            for (let i = 1; i < filas.length; i++) {  // Empezamos desde 1 para ignorar la cabecera
+                const valor = parseInt(filas[i].cells[0].textContent, 10);
+                suma += valor;
+            }
+            document.getElementById('resultado').textContent = `La suma total es: ${suma}`;
+        }
     </script>
 </body>
 </html>
