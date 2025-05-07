@@ -9,7 +9,6 @@ fetch('data.json')
       };
     });
 
-    // Ordenar de mayor a menor y tomar los 10 primeros
     const top10 = regionesTotales
       .sort((a, b) => b.total - a.total)
       .slice(0, 10);
