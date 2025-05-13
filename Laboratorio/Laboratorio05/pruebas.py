@@ -8,5 +8,6 @@ negativo = knight.negative()
 juntos = vertical.join(negativo)
 torre = original.up(negativo)
 errot = original.under(negativo)
+repeticionH = horizontal.horizontalRepeat(3)
 
-draw(errot)
+draw(repeticionH)
