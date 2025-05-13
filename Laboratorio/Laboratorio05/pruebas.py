@@ -1,7 +1,8 @@
-from chessPictures import bishop
+from chessPictures import knight 
 from interpreter import draw
 
-original = bishop
-vertical = bishop.verticalMirror()
+original = knight
+vertical = knight.verticalMirror()
+horizontal=knight.horizontalMirror()
 
-draw(vertical)
+draw(horizontal)
