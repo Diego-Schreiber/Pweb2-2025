@@ -7,5 +7,6 @@ horizontal = knight.horizontalMirror()
 negativo = knight.negative()
 juntos = vertical.join(negativo)
 torre = original.up(negativo)
+errot = original.under(negativo)
 
-draw(torre)
+draw(errot)
