@@ -16,8 +16,8 @@ class Picture:
     return Picture(vertical)
 
   def horizontalMirror(self):
-    """ Devuelve el espejo horizontal de la imagen """
-    return Picture(None)
+    horizontal = self.img[::-1]
+    return Picture(horizontal)
 
   def negative(self):
     """ Devuelve un negativo de la imagen """
