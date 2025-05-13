@@ -3,6 +3,7 @@ from interpreter import draw
 
 original = knight
 vertical = knight.verticalMirror()
-horizontal=knight.horizontalMirror()
+horizontal = knight.horizontalMirror()
+negativo = knight.negative()
 
-draw(horizontal)
+draw(negativo)
