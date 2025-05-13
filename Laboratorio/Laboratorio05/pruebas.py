@@ -5,5 +5,6 @@ original = knight
 vertical = knight.verticalMirror()
 horizontal = knight.horizontalMirror()
 negativo = knight.negative()
+juntos = vertical.join(negativo)
 
-draw(negativo)
+draw(juntos)
