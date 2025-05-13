@@ -12,7 +12,9 @@ class Picture:
     return inverter[color]
 
   def verticalMirror(self):
-    vertical = [line[::-1] for line in self.img]
+    vertical = []
+    for value in self.img:
+        vertical.append(value[::-1])
     return Picture(vertical)
 
   def horizontalMirror(self):
@@ -20,18 +22,25 @@ class Picture:
     return Picture(horizontal)
 
   def negative(self):
-    nueva_img = []
-    for linea in self.img:
-        nueva_linea = ''.join(self._invColor(c) for c in linea)
-        nueva_img.append(nueva_linea)
-    return Picture(nueva_img)
+    negativo = []
+    for value in self.img:
+        negativo.append(''.join(map(lambda c: self._invColor(c), value)))
+    return Picture(negativo)
 
   def join(self, p):
-    nueva_img = [linea1 + linea2 for linea1, linea2 in zip(self.img, p.img)]
-    return Picture(nueva_img)
+    nueva_img = []
+    for fila1, fila2 in zip(self.img, p.img):
+        nueva_img.append(fila1 + fila2)
+    return Picture(nueva_img)  def up(self, p):
+
 
   def up(self, p):
-    return Picture(None)
+    nueva_img = []
+    for fila in p.img:
+        nueva_img.append(fila)
+    for fila in self.img:
+        nueva_img.append(fila)
+    return Picture(nueva_img)
 
   def under(self, p):
     """ Devuelve una nueva figura poniendo la figura p sobre la
