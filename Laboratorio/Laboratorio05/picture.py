@@ -31,8 +31,7 @@ class Picture:
     nueva_img = []
     for fila1, fila2 in zip(self.img, p.img):
         nueva_img.append(fila1 + fila2)
-    return Picture(nueva_img)  def up(self, p):
-
+    return Picture(nueva_img) 
 
   def up(self, p):
     nueva_img = []
