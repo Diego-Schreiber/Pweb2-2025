@@ -42,8 +42,11 @@ class Picture:
     return Picture(nueva_img)
 
   def under(self, p):
-        nueva_img = self.img + p.img 
-        return Picture(nueva_img)
+    nueva_img = [
+        ''.join(c2 if c1 == ' ' else c1 for c1, c2 in zip(f1, f2))
+        for f1, f2 in zip(self.img, p.img)
+    ]
+    return Picture(nueva_img)
   
   def horizontalRepeat(self, n):
     nueva_img = []
