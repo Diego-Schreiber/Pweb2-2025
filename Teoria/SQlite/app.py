@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 import sqlite3
 
 app = Flask(__name__)
@@ -10,7 +10,7 @@ def get_db_connection():
 
 @app.route('/')
 def index():
-    return "API de Películas IMDB"
+    return render_template('index.html')
 
 @app.route('/api/movies', methods=['GET'])
 def get_movies():
@@ -25,4 +25,5 @@ def get_movies():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
 
