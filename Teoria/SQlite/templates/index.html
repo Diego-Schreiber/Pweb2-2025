@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Películas IMDB</title>
-    <script src="/static/script.js" defer></script>
 </head>
 <body>
-    <h1>Películas desde la base de datos IMDB</h1>
+    <h1>Películas IMDB</h1>
     <ul id="movie-list"></ul>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
+
