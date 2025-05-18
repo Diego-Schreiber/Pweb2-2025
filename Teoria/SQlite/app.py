@@ -14,11 +14,15 @@ def index():
 
 @app.route('/api/movies', methods=['GET'])
 def get_movies():
-    conn = get_db_connection()
-    query = 'SELECT MovieID, Title, Year, Score, Votes FROM Movie LIMIT 10'
-    result = conn.execute(query).fetchall()
-    conn.close()
-    return jsonify([dict(row) for row in result])
+    try:
+        conn = get_db_connection()
+        query = 'SELECT MovieID, Title, Year, Score, Votes FROM Movie LIMIT 10'
+        result = conn.execute(query).fetchall()
+        conn.close()
+        return jsonify([dict(row) for row in result])
+    except sqlite3.Error as e:
+        return jsonify({'error': f'Error en la base de datos: {str(e)}'}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
+
