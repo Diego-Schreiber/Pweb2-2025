@@ -10,15 +10,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const list = document.getElementById('movie-list');
             data.forEach(movie => {
                 const item = document.createElement('li');
-                item.textContent = `${movie.Title} (${movie.Year})`;
+                item.textContent = `${movie.Title} (${movie.Year}) - Score: ${movie.Score}`;
                 list.appendChild(item);
             });
         })
         .catch(error => {
             const list = document.getElementById('movie-list');
-            const errorItem = document.createElement('li');
-            errorItem.textContent = `Error: ${error.message}`;
-            list.appendChild(errorItem);
+            const item = document.createElement('li');
+            item.textContent = `Error: ${error.message}`;
+            list.appendChild(item);
         });
 });
-
