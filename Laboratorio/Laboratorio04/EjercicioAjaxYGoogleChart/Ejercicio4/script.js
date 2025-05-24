@@ -1,3 +1,5 @@
+
+window.onload = function () {
 fetch('data.json')
   .then(response => response.json())
   .then(data => {
@@ -38,3 +40,4 @@ fetch('data.json')
     });
   })
   .catch(error => console.error('Error al cargar los datos:', error));
+};
