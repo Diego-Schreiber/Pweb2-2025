@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Venta</title>
+</head>
+<body>
+    <h1>Crear Venta</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ formset.management_form }}
+        <table>
+            {% for form in formset %}
+                <tr>
+                    <td>{{ form.producto.label_tag }}</td>
+                    <td>{{ form.producto }}</td>
+                    <td>{{ form.cantidad.label_tag }}</td>
+                    <td>{{ form.cantidad }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <button type="submit">Guardar Venta</button>
+    </form>
+</body>
+</html>
+
