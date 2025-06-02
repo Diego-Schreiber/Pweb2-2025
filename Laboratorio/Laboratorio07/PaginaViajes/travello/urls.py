@@ -1,5 +1,7 @@
 from django.urls import path
 
-form . import views
+from . import views
 
-urlspatterns=[path("",views.index, name="index")]
+urlpatterns = [
+    path('',views.index, name='index'),
+]
