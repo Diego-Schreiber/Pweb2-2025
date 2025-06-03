@@ -3,7 +3,20 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 
 def login(request):
-    pass
+    if  request.method == 'POST':
+         username = request.POST['username']
+         password = request.POST['password']  
+
+         user=auth.authenticate(username=username, password=password)
+
+         if user is not None:
+            auth.login(request, user)
+            return redirect("/")  
+         else:
+            messages.info(request,'invalid credentials')  
+            return redirect('login')   
+    else:
+        return render(request,'account/login.html') 
 
 def register(request):
 
@@ -25,6 +38,7 @@ def register(request):
             else:
                 user = User.objects.create_user(username=username,password=password1, email=email, first_name=first_name, last_name=last_name)    
                 user.save();
+                return redirect('login')
         else: 
            messages.info(request,'different passwords')
            return redirect('register')
