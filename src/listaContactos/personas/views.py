@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Persona
 from .forms import PersonaForm
 
@@ -16,3 +16,19 @@ def persona_create(request):
         form.save()
         form = PersonaForm() 
     return render(request, 'personas/personasCreate.html', {'form': form})
+
+def descripcion_view(request):
+    personas = Persona.objects.all()
+    return render(request, 'personas/descripcion.html', {'personas': personas})
+
+def persona_create_view(request):
+    form = PersonaForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('personas_lista')
+    return render(request, 'personas/personasCreate.html', {'form': form})
+
+def search_view(request):
+    query = request.GET.get('query', '')
+    resultados = Persona.objects.filter(nombre__icontains=query) if query else None
+    return render(request, 'personas/search.html', {'resultados': resultados})
