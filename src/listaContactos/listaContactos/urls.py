@@ -10,4 +10,5 @@ urlpatterns = [
     path('personas/', listar_personas, name='lista_personas'),
     path('admin/', admin.site.urls),
     path('personas/nueva/', views.persona_create, name='persona_create'),
+    path('personas/', include('personas.urls')),
 ]
