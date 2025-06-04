@@ -5,4 +5,4 @@ def myHomeView(request, *args, **kwargs):
     return render(request, "home.html", {})
 
 def anotherView(request):
-    return HttpResponse('<h1>Sólo otra página</h1>').
+    return HttpResponse('<h1>Sólo otra página</h1>')
