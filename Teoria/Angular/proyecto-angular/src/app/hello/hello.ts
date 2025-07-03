@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-hello',
-  imports: [],
+  standalone: true,
   templateUrl: './hello.html',
-  styleUrl: './hello.css'
+  styleUrls: ['./hello.css']
 })
-export class Hello {
-
+export class HelloComponent {
+  name: string = ''; // ← esta es la propiedad a enlazar
 }
+
