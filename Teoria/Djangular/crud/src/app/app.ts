@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Api } from './api';  // nombre real del servicio
+import { Api } from './api';  
 
 @Component({
   selector: 'app-root',
